@@ -8,7 +8,7 @@ Avoid copying & hacking codes.
 - Compile ``tool.cpp`` and see the result.
 
 # Note
-- Make sure your program run normally with these libraries:
+- Your program will include these libraries:
 ```cpp
 #include <iostream>
 #include <assert.h>
