@@ -43,6 +43,7 @@ bool isdef(const string &s){ // DEFINE MUST BE FIRST
   if(s.find("typedef") != -1) return 1;
   if(s.find("#define") != -1) return 1;
   if(s.find("using") != -1 && s.find("=") != -1) return 1; // using pii = pair<int, int>
+  return 0;
 }
 
 int main(){
