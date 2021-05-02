@@ -8,6 +8,7 @@ Avoid copying & hacking codes.
 - Compile ``tool.cpp`` and see the result.
 
 # Note
+- My code has many **BUGS**, so feel free to contact [me](https://www.facebook.com/Shitpost-d%E1%BA%A1o-100328492224653/) if you find bugs, or ask me some questions when you have trouble.
 - Your program will include these libraries:
 ```cpp
 #include <iostream>
