@@ -39,7 +39,7 @@ void getrandstr(){
   main_codes.push_back(ok);
 }
 
-bool isdef(const string &s){ 
+bool isdef(const string &s){
   if(s.find("typedef") != -1) return 1;
   if(s.find("#define") != -1) return 1;
   if(s.find("using") != -1) return 1;
@@ -57,7 +57,7 @@ int main(){
   string s;
 
   while(getline(cin, s)){
-    if(s[0] == '/' || s[0] == '*'){ // comment
+    if(s[0] == '/' || s.find("/*") != -1 || s.find("*/") != -1){ // comment
       cout << s << '\n';
       continue;
     }
