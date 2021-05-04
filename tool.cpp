@@ -39,10 +39,10 @@ void getrandstr(){
   main_codes.push_back(ok);
 }
 
-bool isdef(const string &s){ // DEFINE MUST BE FIRST
+bool isdef(const string &s){ 
   if(s.find("typedef") != -1) return 1;
   if(s.find("#define") != -1) return 1;
-  if(s.find("using") != -1 && s.find("=") != -1) return 1; // using pii = pair<int, int>
+  if(s.find("using") != -1) return 1;
   return 0;
 }
 
