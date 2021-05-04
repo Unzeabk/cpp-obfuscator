@@ -24,8 +24,8 @@ vector <string> main_codes;
 vector <string> defines;
 string def;
 void getrandstr(){
-  def = "#define a";
-  string ok = "a";
+  def = "#define lto5";
+  string ok = "lto5";
   int len = rand() % 1001 + 1;
 
   while(len--){
