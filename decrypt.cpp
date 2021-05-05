@@ -39,6 +39,8 @@ int main(){
     cout << (conv.count(s) ? conv[s] : s) << '\n';
 
   }
+  
+  cerr << "Done ! Check file code.cpp";
 
   return 0;
 }
