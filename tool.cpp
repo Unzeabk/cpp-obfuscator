@@ -42,7 +42,7 @@ void getrandstr(){
 bool isdef(const string &s){
   if(s.find("typedef") != -1) return 1;
   if(s.find("#define") != -1) return 1;
-  if(s.find("using") != -1 && s != "using namespace std") return 1;
+  if(s.find("using") != -1 && s != "using namespace std;") return 1;
   return 0;
 }
 
