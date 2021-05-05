@@ -85,6 +85,8 @@ int main(){
 
   for(const string &codes : defines) cout << codes << '\n';
   for(const string &codes : main_codes) cout << codes << '\n';
+  
+  cerr << "Done ! Check file res.cpp";
 
   return 0;
 }
