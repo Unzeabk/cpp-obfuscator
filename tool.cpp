@@ -19,14 +19,14 @@ void prep(){
   }
 }
 
-
+const int len_def = 1001;
 vector <string> main_codes;
 vector <string> defines;
 string def;
 void getrandstr(){
   def = "#define lto5";
   string ok = "lto5";
-  int len = rand() % 1001 + 1;
+  int len = rand() % len_def + 1;
 
   while(len--){
     int pos = rand() % chars.size();
@@ -42,7 +42,7 @@ void getrandstr(){
 bool isdef(const string &s){
   if(s.find("typedef") != -1) return 1;
   if(s.find("#define") != -1) return 1;
-  if(s.find("using") != -1) return 1;
+  if(s.find("using") != -1 && s != "using namespace std") return 1;
   return 0;
 }
 
@@ -57,15 +57,20 @@ int main(){
   string s;
 
   while(getline(cin, s)){
-    if(s[0] == '/' || s.find("/*") != -1 || s.find("*/") != -1){ // comment
-      cout << s << '\n';
-      continue;
+    /* Delete comment, you can code a function to keep your comment */
+    if(s.find("//") != -1) continue;
+    if(s.find("/*") != -1){
+      while(s.find("*/") == -1) getline(cin, s);
+      getline(cin, s);
     }
+
+    /* Not obfuscate "user-defined"? */
+    if(s.find("#include") != -1) continue;
     if(isdef(s)){
       cout << s << '\n';
       continue;
     }
-    if(s.find("#include") != -1) continue;
+
     if(s == " " || s == "\n") continue;
     while(s.front() == ' ' && s.size()) s.erase(0, 1);
     if(s.size() == 0) continue;
@@ -75,8 +80,11 @@ int main(){
     defines.push_back(def);
   }
 
+  /* Shuffle code */
   for(int time_rand = 10; time_rand--; ) shuffle(defines.begin(), defines.end(), default_random_engine(0));
 
   for(const string &codes : defines) cout << codes << '\n';
   for(const string &codes : main_codes) cout << codes << '\n';
+
+  return 0;
 }
