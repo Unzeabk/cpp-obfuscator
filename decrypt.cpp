@@ -1,3 +1,5 @@
+/// This code doesn't work with code which has user-definition (define, typedef, using...), I'll fix it later :)
+
 #include <bits/stdc++.h>
 using namespace std;
 
