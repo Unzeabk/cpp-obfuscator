@@ -10,4 +10,4 @@ Avoid copying & hacking codes.
 
 # Note
 - My code has many **BUGS**, so feel free to contact [me](https://www.facebook.com/Shitpost-d%E1%BA%A1o-100328492224653/) if you find bugs, or ask me some questions when you have trouble.
-- All commands start with "define, typedef, using" won't be obfuscate, and all comments will be deleted.
+- All commands start with ```define```, ```typedef```, ```using``` won't be obfuscate, and all comments will be deleted.
