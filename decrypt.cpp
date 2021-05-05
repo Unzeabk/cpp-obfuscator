@@ -1,5 +1,3 @@
-/// This code doesn't work with code which has user-definition (define, typedef, using...), I'll fix it later :)
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -19,6 +17,10 @@ int main(){
     if(s == "using namespace std;") continue;
 
     if(s.find("#define") != -1){
+      if(s.find("lto5") == -1){
+        cout << s << '\n';
+        continue;
+      }
       string token = "", en = "", de;
       stringstream read(s);
 
@@ -34,7 +36,7 @@ int main(){
     }
 
     while(s.back() == ' ' && s.size()) s.pop_back();
-    cout << conv[s] << '\n';
+    cout << (conv.count(s) ? conv[s] : s) << '\n';
 
   }
 
