@@ -22,5 +22,7 @@ int main(){
   iiii test = {1,2};
   ll infff=inf+m;
   cout<<infff<<'\n';
+  cin>>infff>>infff>>infff;
+  outPa(test);
   return !(cout << skdf);
 }
