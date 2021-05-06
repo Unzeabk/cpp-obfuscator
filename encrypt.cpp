@@ -26,7 +26,7 @@ string def;
 void getrandstr(){
   def = "#define lto5";
   string ok = "lto5";
-  int len = rand() % len_def + 1;
+  int len = rand() % len_def + 5;
 
   while(len--){
     int pos = rand() % chars.size();
