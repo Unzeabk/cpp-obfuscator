@@ -3,54 +3,87 @@ Feature:
 - Obfuscate C++ keywords with bunch of definitions, then obfuscate your code, and shuffle all of them
 - Can't obfuscate comments, so it will be deleted
 - Your definition (define, typedef, etc.) won't be obfuscate
+Notes:
+- Use C++17
 */
-
-// Updating...
 
 #include <bits/stdc++.h>
 using namespace std;
 
-unordered_map <string, string> kw_ob = {{"FvzxGGlto5EO", "int"},
-                                        {"kLDlto5KLLKD", "const"},
-                                        {"tAcitclto5DM", "insert"},
-                                        {"fRAcRlto5Pdo", "void"},
-                                        {"oVgFEJlto5DdsM", "vector"},
-                                        {"aolto5JhYFe", "char"},
-                                        {"CBMilto5ZfHT", "long long"},
-                                        {"nhcJWNlto5BzeN", "string"},
-                                        {"llWMlto5RPe", "main"},
-                                        {"DVtlto5CcZj", "for"},
-                                        {"PwXMglto5kUqqw", "while"},
-                                        {"DoXIlto5mqA", "auto"},
-                                        {"gSbIilto5wZCU", "freopen"},
-                                        {"KSgVDvlto5hF", "if"},
-                                        {"wNQgumlto5bccTuW", "else"},
-                                        {"Zxxlto5WgIls", "return"},
-                                        {"lCSlto5Xds", "operator"},
-                                        {"Rqlto5JY", "push_back"},
-                                        {"hQFpHalto5FLjz", "bool"},
-                                        {"cGATlto5lMy", "begin"},
-                                        {"rglto5Ysig", "end"},
-                                        {"jkDwlto5TVhbS", "printf"},
-                                        {"qdBIlMlto5apB", "first"},
-                                        {"Vulto5HLRRn", "second"},
-                                        {"qFselto5er", "rbegin"},
-                                        {"ooVZlto5gWCpyU", "rend"},
-                                        {"MCuXSHlto5qQ", "cout"},
-//                                        {"MVCKLKlto555", "resize"}, // error when replace
-//                                        {"BCNlto5wmQTh", "size"},
-                                        {"UWllto5zB", "length"},
-                                        {"PKOnlto5Rn", "setw"},
-                                        {"cCmlto5JQ", "setfill"},
-                                        {"sSLElto5JPwwwV", "puts"},
-                                        {"PINlto5PjNbS", "putchar"},
-                                        {"Kjlto5wrmPL", "getchar"},
-                                        {"PElto5oi", "scanf"},
-                                        {"UZbulto5IUtOIR", "cin"},
+const int len_def = 10;
+vector <char> chars;
+
+void prep(){
+  for(int i = 0; i < 26; i++){
+    chars.push_back('a' + i);
+    chars.push_back('A' + i);
+    if(i <= 9) chars.push_back('0' + i);
+  }
+}
+
+unordered_map <string, string> kw_ob = {{"int", "RWLRlflto5cxp"},
+                                        {"void", "WWqvDlto5XmM"},
+                                        {"vector", "gaNlto5gf"},
+                                        {"char", "JZJHIhlto5CC"},
+                                        {"long long", "sHuvLlto5CUjn"},
+                                        {"string", "FOnmklto5cSwV"},
+                                        {"main", "eKIulto5wy"},
+                                        {"for", "Rmzlto5bn"},
+                                        {"while", "cbdyQlto5Qsq"},
+                                        {"auto", "FRWClto5TbVJwU"},
+                                        {"freopen", "KBGksMlto5ID"},
+                                        {"if", "Kazlto5ih"},
+                                        {"else", "EAEElto5ZpbDS"},
+                                        {"return", "avhbwUlto5ue"},
+                                        {"operator", "nMhQsJlto5TGGRvs"},
+                                        {"push_back", "CYSvlto5Tz"},
+                                        {"bool", "UAulto5csmL"},
+                                        {"begin", "ayFHzlto5ODQ"},
+                                        {"end", "DOhGCKlto5DWVVTX"},
+                                        {"printf", "OxQlto5jPXf"},
+                                        {"first", "mKlto5yWM"},
+                                        {"second", "NvQlto5mT"},
+                                        {"rbegin", "NYtwTlto5sQ"},
+                                        {"rend", "PvLxlto5cZHrWI"},
+                                        {"cout", "FTlto5Vu"},
+                                        {"size", "lzlBWlto5ydUSz"},
+                                        {"length", "DVnnJlto5LXV"},
+                                        {"setw", "xRMWBRlto5jqq"},
+                                        {"setfill", "jsexePlto5sjM"},
+                                        {"puts", "cLZflto5MJ"},
+                                        {"putchar", "ZLlto5YhJGJ"},
+                                        {"getchar", "QAswXlto5cE"},
+                                        {"scanf", "srySumlto5be"},
+                                        {"cin", "dgzeIjlto5eD"},
                                       };
 
+string get_rand(){
+  string ress = "";
+  for(int len_front = rand() % len_def + 1; len_front--; )
+    ress.push_back(chars[rand() % chars.size()]);
+  ress.append("lto5");
+  for(int len_back = rand() % len_def + 1; len_back--; )
+    ress.push_back(chars[rand() % chars.size()]);
+  while(isdigit(ress[0])) ress.erase(ress.begin());
+  return ress;
+}
+
 void change_keyword_obfuscator(){
-  ;
+  for(auto it = kw_ob.begin(); it != kw_ob.end(); )
+    for(auto itt = ++it; itt != kw_ob.end(); itt++){
+      bool change = rand() % 2;
+      if(change) swap(it, itt);
+    }
+  for(auto &it: kw_ob) kw_ob[it.first] = get_rand();
+}
+
+
+void change_keyword(string &ss){
+  for(const auto &[k2, k1] : kw_ob){
+    for(int i = 0; i < ss.size(); i++){
+      if(ss.substr(i, k1.size()) == k1) ss.replace(i, k1.size(), k2);
+    }
+  }
 }
 
 
@@ -63,16 +96,6 @@ void std_lib(){
   cout << "using namespace std;\n";
 }
 
-vector <char> chars;
-void prep(){
-  for(int i = 0; i < 26; i++){
-    chars.push_back('a' + i);
-    chars.push_back('A' + i);
-    if(i <= 9) chars.push_back('0' + i);
-  }
-}
-
-const int len_def = 10;
 vector <string> main_codes;
 vector <string> defines;
 string def;
@@ -99,24 +122,17 @@ bool isdef(const string &s){
   return 0;
 }
 
-void change_keyword(string &ss){
-  for(const auto &[k1, k2] : kw_ob){ // C++ 17
-    for(int i = 0; i < ss.size(); i++){
-      if(ss.substr(i, k2.size()) == k2) ss.replace(i, k2.size(), k1);
-    }
-  }
-}
-
 int main(){
   freopen("code.cpp", "r", stdin);
   freopen("res.cpp", "w", stdout);
 
   srand(time(NULL));
   prep();
+  change_keyword_obfuscator();
   std_lib();
 
   for(const auto &[k1, k2] : kw_ob){
-    cout << "#define " << k1 << " " << k2 << '\n';
+    cout << "#define " << k2 << " " << k1 << '\n';
   }
 
   string s;
