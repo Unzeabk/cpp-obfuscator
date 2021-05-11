@@ -145,7 +145,7 @@ int main(){
       getline(cin, s);
     }
 
-    /* Not obfuscate "user-defined"? */
+    /* Pass your definition */
     if(s.find("#include") != -1) continue;
     if(s == "using namespace std;") continue;
     if(isdef(s)){
