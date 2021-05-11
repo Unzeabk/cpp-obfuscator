@@ -22,6 +22,10 @@ void prep(){
 }
 
 unordered_map <string, string> kw_ob = {{"int", "RWLRlflto5cxp"},
+                                        {"const", "obf_lto5"},
+                                        {"insert", "lto5"},
+//                                        {"back", "lto5"},
+//                                        {"front", "lto5"},
                                         {"void", "WWqvDlto5XmM"},
                                         {"vector", "gaNlto5gf"},
                                         {"char", "JZJHIhlto5CC"},
@@ -46,7 +50,7 @@ unordered_map <string, string> kw_ob = {{"int", "RWLRlflto5cxp"},
                                         {"rbegin", "NYtwTlto5sQ"},
                                         {"rend", "PvLxlto5cZHrWI"},
                                         {"cout", "FTlto5Vu"},
-                                        //{"size", "lzlBWlto5ydUSz"},
+//                                        {"size", "lzlBWlto5ydUSz"},
                                         {"length", "DVnnJlto5LXV"},
                                         {"setw", "xRMWBRlto5jqq"},
                                         {"setfill", "jsexePlto5sjM"},
@@ -79,7 +83,7 @@ void change_keyword_obfuscator(){
 
 
 void change_keyword(string &ss){
-  for(const auto &[k2, k1] : kw_ob){
+  for(const auto &[k1, k2] : kw_ob){
     for(int i = 0; i < ss.size(); i++){
       if(ss.substr(i, k1.size()) == k1) ss.replace(i, k1.size(), k2);
     }
@@ -145,7 +149,7 @@ int main(){
       getline(cin, s);
     }
 
-    /* Pass your definition */
+    /* Not obfuscate "user-defined"? */
     if(s.find("#include") != -1) continue;
     if(s == "using namespace std;") continue;
     if(isdef(s)){
