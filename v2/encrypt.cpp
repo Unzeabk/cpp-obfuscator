@@ -1,12 +1,3 @@
-/*
-Feature:
-- Obfuscate C++ keywords with bunch of definitions, then obfuscate your code, and shuffle all of them
-- Can't obfuscate comments, so it will be deleted
-- Your definition (define, typedef, etc.) won't be obfuscate
-Notes:
-- Use C++17
-*/
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -21,6 +12,7 @@ void prep(){
   }
 }
 
+/* If your variables contain these keyword, please change it, because my tool will replace them */
 unordered_map <string, string> kw_ob = {{"int", "RWLRlflto5cxp"},
                                         {"const", "obf_lto5"},
                                         {"insert", "lto5"},
