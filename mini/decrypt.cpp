@@ -1,5 +1,3 @@
-/* Just encrypt short code! */
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -41,21 +39,23 @@ int main(){
     if(s.find("#include") != -1) continue;
     if(s == "using namespace std;") continue;
 
-    //string won't be obfuscated, I will code it later
+    //string won't be obfuscated
     if(isWord(s)){
-      enc.push_back(s);
+      string token = "";
+      stringstream read(s);
+      while(read >> token)
+        if(!isWord(token)) encrypt(s);
+        else break;
+
+      encrypt_full(s);
       continue;
     }
 
     //encrypt each word in s
     string token = "";
     stringstream read(s);
-    while(read >> token){
+    while(read >> token) encrypt(token);
 
-      encrypt(token);
-
-
-    }
 
     //encrypt s
     token = "";
