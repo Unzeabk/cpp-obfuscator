@@ -40,7 +40,7 @@ int main(){
     if(s == "using namespace std;") continue;
 
     //string won't be obfuscated
-    if(isWord(s)){
+    if(isWord(s) && count(s.begin(), s.end(), '\"') != 2){
       string token = "";
       stringstream read(s);
       while(read >> token)
